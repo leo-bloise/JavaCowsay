@@ -1,2 +1,0 @@
-#!/bin/sh
-java -jar /home/bloise/.local/java-cowsay/cowsay.jar "$1" $2
