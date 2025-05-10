@@ -14,11 +14,14 @@ public class AnimalLoader {
     public List<String> loadAnimal(String name) {
         String filename = String.format("%s.cow", name);
         try(InputStream inputStream = classLoader.getResourceAsStream(filename)) {
+            if (inputStream == null) {
+                return loadAnimal("default");
+            }
             try(BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
                 return reader.lines().toList();
             }
-        } catch (IOException ioException) {
-            throw new RuntimeException(ioException);
+        } catch (Exception exception) {
+            return loadAnimal("default");
         }
     }
 }

@@ -21,8 +21,8 @@ public class CowsayBuilder {
         for(String line: message)
             stringBuilder
                     .append("< ")
-                    .append(line)
-                    .append(" ".repeat(maxSize - line.length()))
+                    .append(line.trim())
+                    .append(" ".repeat(maxSize - line.trim().length()))
                     .append(" >")
                 .append("\n");
         stringBuilder
