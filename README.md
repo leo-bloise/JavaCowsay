@@ -8,6 +8,3 @@
 > You'll need java 21 installed
 - Run `gradle install`
 - Done!
-## Uninstall Process
-- Run `gradle uninstall`
-- Done!

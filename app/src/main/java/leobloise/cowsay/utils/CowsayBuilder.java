@@ -1,4 +1,4 @@
-package leobloise.cowsay;
+package leobloise.cowsay.utils;
 
 import java.util.List;
 
@@ -11,22 +11,6 @@ public class CowsayBuilder {
             AnimalLoader animalLoader
     ) {
         this.animalLoader = animalLoader;
-    }
-    public CowsayBuilder buildBubble(String message) {
-        StringBuilder bubbleBuilder = new StringBuilder();
-        bubbleBuilder
-                .append("  ")
-                .append("-".repeat(message.length()))
-                .append("\n")
-                .append("< ")
-                .append(message)
-                .append(" >")
-                .append("\n")
-                .append("  ")
-                .append("-".repeat(message.length()));
-        this.bubble = bubbleBuilder.toString();
-        this.message = message;
-        return this;
     }
     public CowsayBuilder buildBubble(String[] message) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -46,10 +30,6 @@ public class CowsayBuilder {
                 .append("-".repeat(maxSize));
         this.bubble = stringBuilder.toString();
         this.message = message[0];
-        return this;
-    }
-    public CowsayBuilder buildAnimal() {
-        this.animal = this.animalLoader.loadAnimal("default");
         return this;
     }
     public CowsayBuilder buildAnimal(String animal) {

@@ -4,3 +4,4 @@ plugins {
 
 rootProject.name = "Cowsay"
 include("app")
+include("parser")

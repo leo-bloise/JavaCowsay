@@ -1,22 +1,20 @@
 package leobloise.cowsay.utils;
 
+import leobloise.cowsay.commands.CowsayCommand;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommandLineParser {
-    private final String[] args;
-    public CommandLineParser(String[] args) {
-        this.args = args;
+    private final CowsayCommand cowsayCommand;
+    public CommandLineParser(CowsayParser cowsayParser) {
+        this.cowsayCommand = cowsayParser.buildCommand();
     }
     public String getAnimal() {
-        if(args.length <= 1) {
-            return "default";
-        }
-        return args[1];
+        return cowsayCommand.animal();
     }
-    public String[] getMessage(String defaultMessage) {
-        if (args.length == 0) return new String[] {defaultMessage};
-        String message = args[0];
+    public String[] getMessage() {
+        String message = cowsayCommand.message();
         int lineSize = 110;
         if(message.length() < lineSize) {
             return new String[] { message.trim() };
