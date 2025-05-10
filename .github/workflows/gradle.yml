@@ -26,5 +26,5 @@ jobs:
         if: runner.os == 'Linux'
         uses: actions/upload-artifact@v4
         with:
-          name: native-image-linux
+          name: cowsay-linux
           path: ./cowsay  
