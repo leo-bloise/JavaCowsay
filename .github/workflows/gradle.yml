@@ -11,11 +11,11 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - uses: ayltai/setup-graalvm@v1
+      - uses: graalvm/setup-graalvm@v1
         with:
-          java-version: 21
-          graalvm-version: 21.1.0
-          native-image: true
+          java-version: '21'
+          distribution: 'graalvm'
+          native-image-job-reports: 'true'
       - name: Grant execute permission for Gradle wrapper (Linux only)
         if: runner.os == 'Linux'
         run: chmod +x gradlew
