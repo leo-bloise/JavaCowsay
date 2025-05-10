@@ -62,9 +62,18 @@ jobs:
       - name: Build for Linux
         if: runner.os == 'Linux'
         run: ./linux/build.sh
+      - name: Build for Windows
+        if: runner.os == 'Windows'
+        run: ./windows/build.bat
       - name: Upload Native Binary (Linux only)
         if: runner.os == 'Linux'
         uses: actions/upload-artifact@v4
         with:
           name: cowsay-linux
-          path: ./cowsay  
+          path: ./cowsay
+      - name: Upload Native Binary (Windows)
+        if: runner.os == 'Windows'
+        uses: actions/upload-artifact@v4
+        with:
+          name: cowsay-windows
+          path: ./cowsay.exe
