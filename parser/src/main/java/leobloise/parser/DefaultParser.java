@@ -2,7 +2,7 @@ package leobloise.parser;
 
 import java.util.*;
 
-public abstract class DefaultParser<T> implements Parser<T> {
+public abstract class DefaultParser<C> implements Parser<Command> {
     private final String[] args;
     private int lastPositionEvaluated = 0;
     private final Map<Integer, OptionType> optionTypes = new LinkedHashMap<>();

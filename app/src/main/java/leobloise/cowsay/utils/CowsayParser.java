@@ -1,6 +1,7 @@
 package leobloise.cowsay.utils;
 
-import leobloise.cowsay.commands.CowsayCommand;
+import leobloise.parser.Command;
+import leobloise.cowsay.commands.CommandFactory;
 import leobloise.parser.DefaultParser;
 import leobloise.parser.OptionType;
 
@@ -8,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CowsayParser extends DefaultParser<CowsayCommand> {
+public class CowsayParser extends DefaultParser<Command> {
     private Map<String, String> map = new HashMap<>();
     public CowsayParser(String[] args) {
         super(args);
@@ -34,17 +35,18 @@ public class CowsayParser extends DefaultParser<CowsayCommand> {
                 case COMPLETE -> handleCompleteArg(arg);
                 case BOOLEAN -> handleBooleanArg(arg);
                 case PARAMETER -> handleParameterArg(arg, i++);
-                case VALUE -> map.put("message", arg);
+                case VALUE -> {
+                    if (map.containsKey("message")) continue;
+                    map.put("message", arg);
+                }
             }
         }
     }
     @Override
-    public CowsayCommand buildCommand() {
+    public Command buildCommand() {
         mapParams();
-        return new CowsayCommand(
-                map.getOrDefault("message", "Hello World"),
-                map.getOrDefault("animal", "default")
-        );
+        CommandFactory commandFactory = new CommandFactory();
+        return commandFactory.build(map);
     }
 }
 ;
